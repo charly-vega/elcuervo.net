@@ -190,7 +190,7 @@ Creemos que la seguridad y el hacking es algo que le sucede a otra gente, en
 otros países. Internet nos enseño que las fronteras son cosas del pasado, algo
 de un libro de geografía.
 
-Tenemos que pensar en segurar, necesitamos DEMANDAR seguridad y transparencia a
+Tenemos que pensar en seguridad, necesitamos DEMANDAR seguridad y transparencia a
 todos nuestros antigüos sistemas como lo son los bancos. Tenemos que adoptar
 standares de infosec.
 
