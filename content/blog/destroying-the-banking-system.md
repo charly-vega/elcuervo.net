@@ -90,7 +90,10 @@ in this scenario really handy to dig through everything.
 This remote execution tool and since the app itself is just a webpage allowed me
 to execute code and change anything in my device.
 This endeavour proven to be worthy only for changing the bank's logo for
-dickbutt and publishing that information in Twitter, remember... I was drunk.
+Dickbutt and publishing that information in Twitter, remember... I was drunk.
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="es" dir="ltr">Banco. Me voy a dormir. Que descanses: <a href="https://t.co/KEmmghnWmW">pic.twitter.com/KEmmghnWmW</a></p>&mdash; Cuervo (@cuerbot) <a href="https://twitter.com/cuerbot/status/684239299773116416">January 5, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 I called it a day I had enough.
 

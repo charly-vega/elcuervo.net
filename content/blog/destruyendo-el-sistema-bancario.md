@@ -14,18 +14,19 @@ attribution: Christopher Cook
 _Originalmente publicado el 25 de Octubre de 2016_
 
 Bueno, ese fue terrible clickbaith no?. Este blogpost no es acerca de ninguna
-postura politica sobre como destruir el capitalismo o nada por el estilo, no es
-sobre como "teóricamente" se puede destruir el sitema bancario... este blogpost
-es sobre como pude haber destruído el sistema economico de Uruguay por un
+postura política sobre como destruir el capitalismo ni nada por el estilo. No es
+sobre como "teóricamente" se puede destruir el sistema bancario...
+es sobre como pude haber desbarrancado el sistema economico de Uruguay por un
 pequeño bug en una aplicación de ebanking.
 
 Esta historia empieza hace mucho tiempo, no hace mucho tiempo en los tiempos que
-maneja la internet.
-Uno de los bancos de mi pais sacó una campaña diciendole a todos sus usuarios
-que tenían una aplicación móvil nueva. Fantastico.
+maneja la internet pero bastante.
+Uno de los bancos de mi país sacó una campaña diciendole a todos sus usuarios
+que tenían una aplicación móvil nueva. Fantástico.
+
 Lo bueno es que está bastante bien diseñada y funciona en iOS y Android.
 Lo malo es que era la mitad de la noche y yo estaba suficientemente borracho
-como para tratar de destrozarla.
+como para tratar de destrozarla sin pensar demasiado.
 
 ## Disclaimer
 
@@ -40,7 +41,7 @@ próxima semana"
 
 Tengo unas expectativas de lo que una aplicación de ebanking debería hacer:
 
-* SSL en todo.
+* SSL en todo. TODO.
 * SSL pinning del lado de la aplicación.
 * Manejo adecuado de las claves.
 
@@ -57,7 +58,7 @@ Primero lo primero, reconocimiento.
 
 Ya que la aplicacion no configuro [SSL pinning](https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning) correctamente
 es muy fácil intentar un [MITM attack](https://en.wikipedia.org/wiki/Man-in-the-middle_attack)
-solo agregando un certificado raiz a mi dispositivo que me permita interceptar
+solo agregando un certificado root a mi dispositivo que me permita interceptar
 todas las llamadas.
 
 Fue una sorpresa encontrar que no **TODAS** las llamadas tuvieran SSL.
@@ -70,24 +71,24 @@ http://maps.googleapis.com/maps/api/js
 ```
 
 Entonces, tenemos un archivo HTTP plano pidiendo el Google Map JS API
-directamente a la aplicacion para poder ver un mapa de todos los bancos.
+directamente a la aplicación para poder ver un mapa de todos los bancos.
 Entonces lo lógico sería una WebView embebida por alguna razón.
 
 Intercepté la llamada solo probando una simple injección XSS. Bingo! Puedo
 ejecutar cualquier JS internamente a la aplicación, que más?
 
-Teniendo la habilidad de inyectar cualquier JS  me dio curiosidad que la
+Teniendo la abilidad de inyectar cualquier JS  me dio curiosidad que la
 aplicación no fuera mas que un sitio web empaquetado en [Cordova](https://cordova.apache.org/)
-conviertiendo toda la aplicación en solo un programa en JS y con eso  dandome la opción de investigar cada
+conviertiendo en solo un programa en JS y con eso dandome la opción de investigar cada
 rincón de ella.
 
 Como uno esperaría siendo una aplicación que maneja dinero **REAL** de gente
 **REAL** era... solamente un programa JS, un programa usando [Ionic](http://ionicframework.com/)
-empaquetado con Cordova para ser mas explicito.
+empaquetado con Cordova para ser mas específico.
 
 Cómo es que sé esto? Bueno, se acuerdan que es posible ejecutar **CUALQUIER** JS
 en la aplicación?.
-Bueno, como puedo ejecutar lo que sea inicié un servidor de [Weinre](https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html) en mi maquina.
+Bueno, como puedo ejecutar lo que sea inicié un servidor de [Weinre](https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html) en mi máquina.
 Esta herramienta facilita el debug de una aplicación JS dentro del dispositivo.
 Extremadamente util para saber que esta sucediendo en el dispositivo y en este
 escenario muy util para ver todo lo que pasa.
@@ -96,6 +97,14 @@ Esta herramienta de ejecución de código remoto (y ya que la aplicación era so
 un sitio web) me permitió ejecutar y cambiar lo que quisiese.
 Este camiino demostró solo útil para cambiar el logo del banco por un Dickbutt y
 publicando todo esto en Twitter... porque bueno... estaba borracho.
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="es" dir="ltr">Banco.
+Me voy a dormir. Que descanses: <a
+href="https://t.co/KEmmghnWmW">pic.twitter.com/KEmmghnWmW</a></p>&mdash; Cuervo
+(@cuerbot) <a
+href="https://twitter.com/cuerbot/status/684239299773116416">January 5,
+2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 Di el dia por terminado, ya hice mucho.
 
