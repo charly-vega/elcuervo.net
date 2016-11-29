@@ -97,7 +97,10 @@ in this scenario really handy to dig through everything.&lt;/p&gt;
 &lt;p&gt;This remote execution tool and since the app itself is just a webpage allowed me
 to execute code and change anything in my device.
 This endeavour proven to be worthy only for changing the bank&amp;rsquo;s logo for
-dickbutt and publishing that information in Twitter, remember&amp;hellip; I was drunk.&lt;/p&gt;
+Dickbutt and publishing that information in Twitter, remember&amp;hellip; I was drunk.&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;es&#34; dir=&#34;ltr&#34;&gt;Banco. Me voy a dormir. Que descanses: &lt;a href=&#34;https://t.co/KEmmghnWmW&#34;&gt;pic.twitter.com/KEmmghnWmW&lt;/a&gt;&lt;/p&gt;&amp;mdash; Cuervo (@cuerbot) &lt;a href=&#34;https://twitter.com/cuerbot/status/684239299773116416&#34;&gt;January 5, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;I called it a day I had enough.&lt;/p&gt;
 
@@ -206,18 +209,19 @@ arcane systems like banks. They need to adapt to current infosec standards.&lt;/
 &lt;p&gt;&lt;em&gt;Originalmente publicado el 25 de Octubre de 2016&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Bueno, ese fue terrible clickbaith no?. Este blogpost no es acerca de ninguna
-postura politica sobre como destruir el capitalismo o nada por el estilo, no es
-sobre como &amp;ldquo;teóricamente&amp;rdquo; se puede destruir el sitema bancario&amp;hellip; este blogpost
-es sobre como pude haber destruído el sistema economico de Uruguay por un
+postura política sobre como destruir el capitalismo ni nada por el estilo. No es
+sobre como &amp;ldquo;teóricamente&amp;rdquo; se puede destruir el sistema bancario&amp;hellip;
+es sobre como pude haber desbarrancado el sistema economico de Uruguay por un
 pequeño bug en una aplicación de ebanking.&lt;/p&gt;
 
 &lt;p&gt;Esta historia empieza hace mucho tiempo, no hace mucho tiempo en los tiempos que
-maneja la internet.
-Uno de los bancos de mi pais sacó una campaña diciendole a todos sus usuarios
-que tenían una aplicación móvil nueva. Fantastico.
-Lo bueno es que está bastante bien diseñada y funciona en iOS y Android.
+maneja la internet pero bastante.
+Uno de los bancos de mi país sacó una campaña diciendole a todos sus usuarios
+que tenían una aplicación móvil nueva. Fantástico.&lt;/p&gt;
+
+&lt;p&gt;Lo bueno es que está bastante bien diseñada y funciona en iOS y Android.
 Lo malo es que era la mitad de la noche y yo estaba suficientemente borracho
-como para tratar de destrozarla.&lt;/p&gt;
+como para tratar de destrozarla sin pensar demasiado.&lt;/p&gt;
 
 &lt;h2 id=&#34;disclaimer&#34;&gt;Disclaimer&lt;/h2&gt;
 
@@ -233,7 +237,7 @@ próxima semana&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;Tengo unas expectativas de lo que una aplicación de ebanking debería hacer:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;SSL en todo.&lt;/li&gt;
+&lt;li&gt;SSL en todo. TODO.&lt;/li&gt;
 &lt;li&gt;SSL pinning del lado de la aplicación.&lt;/li&gt;
 &lt;li&gt;Manejo adecuado de las claves.&lt;/li&gt;
 &lt;/ul&gt;
@@ -251,7 +255,7 @@ y cosas que los pentesters deberían revisar en sus tests.&lt;/p&gt;
 
 &lt;p&gt;Ya que la aplicacion no configuro &lt;a href=&#34;https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning&#34;&gt;SSL pinning&lt;/a&gt; correctamente
 es muy fácil intentar un &lt;a href=&#34;https://en.wikipedia.org/wiki/Man-in-the-middle_attack&#34;&gt;MITM attack&lt;/a&gt;
-solo agregando un certificado raiz a mi dispositivo que me permita interceptar
+solo agregando un certificado root a mi dispositivo que me permita interceptar
 todas las llamadas.&lt;/p&gt;
 
 &lt;p&gt;Fue una sorpresa encontrar que no &lt;strong&gt;TODAS&lt;/strong&gt; las llamadas tuvieran SSL.
@@ -263,24 +267,24 @@ Un Javascript? Por qué? Solo por curiosidad lo miré:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Entonces, tenemos un archivo HTTP plano pidiendo el Google Map JS API
-directamente a la aplicacion para poder ver un mapa de todos los bancos.
+directamente a la aplicación para poder ver un mapa de todos los bancos.
 Entonces lo lógico sería una WebView embebida por alguna razón.&lt;/p&gt;
 
 &lt;p&gt;Intercepté la llamada solo probando una simple injección XSS. Bingo! Puedo
 ejecutar cualquier JS internamente a la aplicación, que más?&lt;/p&gt;
 
-&lt;p&gt;Teniendo la habilidad de inyectar cualquier JS  me dio curiosidad que la
+&lt;p&gt;Teniendo la abilidad de inyectar cualquier JS  me dio curiosidad que la
 aplicación no fuera mas que un sitio web empaquetado en &lt;a href=&#34;https://cordova.apache.org/&#34;&gt;Cordova&lt;/a&gt;
-conviertiendo toda la aplicación en solo un programa en JS y con eso  dandome la opción de investigar cada
+conviertiendo en solo un programa en JS y con eso dandome la opción de investigar cada
 rincón de ella.&lt;/p&gt;
 
 &lt;p&gt;Como uno esperaría siendo una aplicación que maneja dinero &lt;strong&gt;REAL&lt;/strong&gt; de gente
 &lt;strong&gt;REAL&lt;/strong&gt; era&amp;hellip; solamente un programa JS, un programa usando &lt;a href=&#34;http://ionicframework.com/&#34;&gt;Ionic&lt;/a&gt;
-empaquetado con Cordova para ser mas explicito.&lt;/p&gt;
+empaquetado con Cordova para ser mas específico.&lt;/p&gt;
 
 &lt;p&gt;Cómo es que sé esto? Bueno, se acuerdan que es posible ejecutar &lt;strong&gt;CUALQUIER&lt;/strong&gt; JS
 en la aplicación?.
-Bueno, como puedo ejecutar lo que sea inicié un servidor de &lt;a href=&#34;https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html&#34;&gt;Weinre&lt;/a&gt; en mi maquina.
+Bueno, como puedo ejecutar lo que sea inicié un servidor de &lt;a href=&#34;https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html&#34;&gt;Weinre&lt;/a&gt; en mi máquina.
 Esta herramienta facilita el debug de una aplicación JS dentro del dispositivo.
 Extremadamente util para saber que esta sucediendo en el dispositivo y en este
 escenario muy util para ver todo lo que pasa.&lt;/p&gt;
@@ -289,6 +293,14 @@ escenario muy util para ver todo lo que pasa.&lt;/p&gt;
 un sitio web) me permitió ejecutar y cambiar lo que quisiese.
 Este camiino demostró solo útil para cambiar el logo del banco por un Dickbutt y
 publicando todo esto en Twitter&amp;hellip; porque bueno&amp;hellip; estaba borracho.&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;es&#34; dir=&#34;ltr&#34;&gt;Banco.
+Me voy a dormir. Que descanses: &lt;a
+href=&#34;https://t.co/KEmmghnWmW&#34;&gt;pic.twitter.com/KEmmghnWmW&lt;/a&gt;&lt;/p&gt;&amp;mdash; Cuervo
+(@cuerbot) &lt;a
+href=&#34;https://twitter.com/cuerbot/status/684239299773116416&#34;&gt;January 5,
+2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
 
 &lt;p&gt;Di el dia por terminado, ya hice mucho.&lt;/p&gt;
 
