@@ -2,12 +2,230 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>elcuervo</title>
-    <link>/</link>
+    <link>/index.xml</link>
     <description>Recent content on elcuervo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Oct 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 29 Nov 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Omnibus</title>
+      <link>/blog/omnibus/</link>
+      <pubDate>Tue, 29 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/omnibus/</guid>
+      <description>
+
+&lt;p&gt;Publicado originalmente el .&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Omnibus, del latin: Para todos&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;STM nace con el ideal de llevar a Montevideo al siglo 21 ofreciendo una tarjeta de transporte
+como hay en cualquier otro lugar del mundo.&lt;/p&gt;
+
+&lt;h2 id=&#34;érase-una-vez&#34;&gt;Érase una vez&amp;hellip;&lt;/h2&gt;
+
+&lt;p&gt;Desde la invención de &lt;a href=&#34;https://en.wikipedia.org/wiki/Near_field_communication&#34;&gt;NFC&lt;/a&gt;
+la batalla de que tarjeta es mejor fue fiera.&lt;/p&gt;
+
+&lt;p&gt;Hubo una que se hizo extremadamente famosa ya que se implementó en varios lugares
+del mundo especialmente en sistemas de transporte. Ésta fue la &lt;a href=&#34;https://en.wikipedia.org/wiki/MIFARE&#34;&gt;Mifare Classic&lt;/a&gt; de
+la empresa NXP.&lt;/p&gt;
+
+&lt;p&gt;Todo este blogpost trata sobew un problema que tienen las tarjetas Mifare desde el principio siendo
+totalmente público desde otros afectados en 2008 como: hasta la propia Mifare
+que no recomiendo el uso de sus tarjetas Classic cuando la seguridad es algo
+importante: &lt;a href=&#34;http://www.nxp.com/products/identification-and-security/mifare-ics/mifare-classic:MC_41863&#34;&gt;Seguridad Mifare Classic&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/MIFARE#Security_of_MIFARE_Classic.2C_MIFARE_DESFire_and_MIFARE_Ultralight&#34;&gt;Modelo Mifare usado&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Following the broad acceptance of contactless ticketing technology and
+extraordinary success of the MIFARE Classic® product family, application
+requirements and security needs constantly increased. Therefore we do not
+recommend to use MIFARE Classic in security relevant applications anymore.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Bueno, empecemos con lo que nos atañe.
+Esta es una explicación de una vulnerabilidad que tiene tantos años como el
+producto en si.&lt;/p&gt;
+
+&lt;p&gt;La vulnerabilidad afecta todas y cada una de las tarjetas STM.&lt;/p&gt;
+
+&lt;p&gt;Para dar un poco de contexto esta es una presentación &amp;ldquo;interna&amp;rdquo; (gracias Google)
+de explicación de todo el sistema de transporte. Antes que me digan nada es del
+2008.&lt;/p&gt;
+
+&lt;p&gt;&lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/fyzLVFGy7yynyr&#34; height=&#34;485&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34;&gt; &lt;/iframe&gt;
+&lt;a href=&#34;http://es.slideshare.net/alejandro.benitez/ssistema-de-transporte-montevideo-presentation&#34;&gt;Original&lt;/a&gt;
+&lt;a href=&#34;/arquitectura-stm.ppt&#34;&gt;Mirror&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Mas allá de la antiguedad de la presentacion lo que mas me llama la atención es
+la cantidad de información interna que hay.&lt;/p&gt;
+
+&lt;h2 id=&#34;una-tarjeta-de-transporte&#34;&gt;&amp;hellip; una tarjeta de transporte&lt;/h2&gt;
+
+&lt;p&gt;Montevideo optó por un modelo de tarjeta NFC de la empresa NXP.
+NFC es una tecnología que tiene muchos años en el mercado, es ese tipo de magia
+negra que nos llena de ilusión sobre estar viviendo en el futuro: transmisión de
+datos sin contacto.
+La elección del modelo de NXP sucedió hace ya mucho tiempo seguramente atado a
+un bajo precio o quién sabe que.&lt;/p&gt;
+
+&lt;p&gt;Mi madre siempre decía con razón: &amp;ldquo;lo barato sale caro&amp;rdquo;.&lt;/p&gt;
+
+&lt;h2 id=&#34;que-no-era-como-las-demas&#34;&gt;&amp;hellip; que no era como las demas&lt;/h2&gt;
+
+&lt;p&gt;Sabemos varias cosas: es una tecnología que tiene tiempo ahi afuera y que no es
+particularmente cara.&lt;/p&gt;
+
+&lt;p&gt;En cualquier otro escenario esto no sería ningún problema, el problema es (como con
+las ideas en general) la implementación, una idea no vale nada.&lt;/p&gt;
+
+&lt;p&gt;Dentro de la tecnología de la información hay dos escuelas, la cerrada que pregona
+que toda tecnología privada y sellada es mas valiosa y la otra donde se nos tilda
+de hippies que no entendemos nada y optamos por compartir lo que sabemos.&lt;/p&gt;
+
+&lt;p&gt;Mi mentor una vez me dijo: &amp;ldquo;nunca uses un algoritmo que no haya sido evaluado por
+pares, cuantos mas ojos miren mas van a poder encontrar los errores&amp;rdquo;. Me tomo 15
+años encontrar un caso tan evidente como este:&lt;/p&gt;
+
+&lt;p&gt;NXP, la empresa atrás del desarrollo de la tarjeta STM decidió usar su propio
+sistema criptografico conocido como &lt;a href=&#34;https://en.wikipedia.org/wiki/Crypto-1&#34;&gt;CRYPTO1&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Como se imaginarán esa no fue una idea demasiado brillante.&lt;/p&gt;
+
+&lt;p&gt;La seguridad por oscuridad tiende a colapsar ante el primer vestigio de luz.&lt;/p&gt;
+
+&lt;p&gt;Meses despues del lanzamiento de la tarjeta ya exisitia un exploit.
+El problema radica en la generacion de numeros al azar (&lt;a href=&#34;https://en.wikipedia.org/wiki/Random_number_generation&#34;&gt;RNG&lt;/a&gt;) de la tarjeta donde
+por una mala implementación el azar es predecible.
+Asi nació &lt;a href=&#34;http://crapto1.netgarage.org/&#34;&gt;CRAPTO1&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;y-quería-que-todos-viajaran&#34;&gt;&amp;hellip; y quería que todos viajaran.&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/blog/dump.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Esta es la parte jugosa.&lt;/p&gt;
+
+&lt;p&gt;Sabemos como funciona y sabemos como puede llegar a fallar.
+Ahora: que tan fácil es viajar gratis en el sistema de transporte metropolitano?&lt;/p&gt;
+
+&lt;p&gt;Mi investigación llevo un tiempo, desde la comprensión del problema hasta el acceso
+al hardware necesario.&lt;/p&gt;
+
+&lt;p&gt;Al dia de hoy el costo es de $40 dólares de Trump ^_^.&lt;/p&gt;
+
+&lt;p&gt;Pero no siempre fue así.&lt;/p&gt;
+
+&lt;p&gt;La historia comienza cuando pude tener acceso a un lector NFC de bajo costo.
+El modelo que elegi es el &lt;a href=&#34;https://www.adafruit.com/product/364&#34;&gt;PN532&lt;/a&gt; que sabía tenia buena compatibildad con
+Raspberry Pi. Esa elección se daba por lo siguiente:&lt;/p&gt;
+
+&lt;p&gt;Ese modelo de tarjeta NFC esta dividida en sectores, para tener acceso a
+cada sector se necesita una clave de lectura y una de escritura.&lt;/p&gt;
+
+&lt;p&gt;Dado el problema en la generación de números aleatorios de la tarjeta teniendo
+cualquiera de las 32 claves posibles de una tarjeta se puede inferir el valor del
+resto.
+Esto puede ser un proceso tedioso de entre 5 minutos a algunas horas pero garantiza
+una copia completa de la tarjeta siempre&amp;hellip; siempre y cuando se tenga paciencia.&lt;/p&gt;
+
+&lt;p&gt;Mi enfoque original era bastante optimista, asumí que durante la implementación
+no habian cambiado alguna clave por defecto.&lt;/p&gt;
+
+&lt;p&gt;En defensa de quien sea que lo haya implementado efectivamente cambiaron las claves
+por defecto de la tarjeta.&lt;/p&gt;
+
+&lt;p&gt;Aún no termina la historia, si bien es &lt;em&gt;mas fácil&lt;/em&gt; acceder a una tarjeta teniendo
+una de las claves existe otra manera: fuerza bruta.&lt;/p&gt;
+
+&lt;p&gt;Es por ese motivo que queria una Raspberry Pi, armé un setup con una pi y el lector,
+redundancia electrica y una alerta cuando encontrara algo y tiré una moneda al aire.&lt;/p&gt;
+
+&lt;p&gt;4 días después me llené de euforia al ver esa clave hexadecimal: &lt;code&gt;0xd14400000000&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Bueno, no esa&amp;hellip; puse en cero algunos valores para hacerlo mas interesante :P.&lt;/p&gt;
+
+&lt;p&gt;Habiendo conseguido esa clave pude inferir el resto de las claves de la tarjeta.&lt;/p&gt;
+
+&lt;p&gt;Pero cual es la gracia si solo se puede hacer en una tarjeta? Hay una cantidad
+gigante de claves ahi afuera, todos sabemos que repetir este proceso por cada
+una de ellas es ridiculamente trabajoso&amp;hellip; a menos que&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Intetando reproducir el experimento en otra tarjeta me canse de esperar el ataque
+de fuerza bruta y probé las 32 claves que ya tenia de la tarjeta original con
+otra que consegui.&lt;/p&gt;
+
+&lt;p&gt;31 claves denegadas luego noté algo interesante&amp;hellip; la primer clave de lectura
+del primer sector de todas las tarjetas es la misma.
+Usando esta clave &amp;ldquo;maestra&amp;rdquo; todo el resto de claves pueden ser inferidas.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/blog/proxmark3.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Con mejor hardware, como un lector Proxmark3 el tiempo de crackeo de la clave
+es de menos de 10 segundos.&lt;/p&gt;
+
+&lt;h2 id=&#34;un-vestigio-de-luz&#34;&gt;Un vestigio de luz.&lt;/h2&gt;
+
+&lt;p&gt;Ahora ilumenemos todo el cuarto y veamos como funciona la STM.&lt;/p&gt;
+
+&lt;p&gt;En el momento que un usuario compra su tarjeta de transporte se asocia el UID
+de la tarjeta NFC a la cédula sin puntos ni guiones:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;UID: 123123123123 -&amp;gt; CI: 12346789&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;En caso de perder la tarjeta y solicitar una nueva se va a repetir el proceso
+pero la cedula (o usuario en este caso) cambia a &lt;code&gt;12346789_2&lt;/code&gt;, osea, un guion bajo
+más el &lt;code&gt;n&lt;/code&gt; siguiente.&lt;/p&gt;
+
+&lt;p&gt;Esto trae muchos problmeas, empezando por el anonimato, cada ruta de un portador
+de tarjeta STM puede ser inferida con bastante facilidad pero no solo eso.
+Los &lt;code&gt;UID&lt;/code&gt; de las tarjetas NFC pueden ser leidos sin necesidad de una clave de
+lectura, por lo tanto un agente externo puede &amp;ldquo;identificar&amp;rdquo; a un usuario a una
+distancia prudencial.&lt;/p&gt;
+
+&lt;p&gt;Luego, al subir a un omnibus y acercar la tarjeta al lector sucede lo siguiente:
+se lee el primer sector con la clave maestra que irónicamente guarda el &lt;code&gt;UID&lt;/code&gt; de
+la tarjeta, seguramente como validación. Con ese &lt;code&gt;UID&lt;/code&gt; se calculan los valores
+de las claves de los siguientes sectores.&lt;/p&gt;
+
+&lt;p&gt;Se usan varias de las recomendaciones de seguridad que les pide Mifare a los que
+usen este modelo viejo que son: contadores (que aumentan y decresen) y los datos
+(por suerte) no estan en texto plano como las fechas y credito. Están guardados
+usando &lt;a href=&#34;https://en.wikipedia.org/wiki/Exclusive_or&#34;&gt;XOR&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ese registro de crédito pasa a la computadora de a bordo, arriba, a la derecha
+entrando en el omnibus. Que tiene un pendrive que guarda los datos de las tarjetas
+y sus rutas y es entregado con la recaudación al final de cada jornada.&lt;/p&gt;
+
+&lt;p&gt;Es decir, el registro de boletos y su crédito es guardado offline y luego
+(diariamente?) es actualizado en una base central.&lt;/p&gt;
+
+&lt;p&gt;Lo que nos da como unica fuente de la verdad la tarjeta STM.
+Una tarjeta hackeable.&lt;/p&gt;
+
+&lt;p&gt;La tarjeta (en su implementación) es vulnerable a lo que se conoce como &lt;a href=&#34;https://en.wikipedia.org/wiki/Replay_attack&#34;&gt;Replay Attack&lt;/a&gt;
+ya que si guardamos una imagen de la tarjeta con $2000 podemos restaurarla
+a su estado anterior.&lt;/p&gt;
+
+&lt;p&gt;Incluso el uso de emuladores NFC como el Proxmark3 hacen posible tener un
+dispositivo con saldo perpetuo.&lt;/p&gt;
+
+&lt;h2 id=&#34;destino&#34;&gt;Destino.&lt;/h2&gt;
+
+&lt;p&gt;El problema no radica exclusivamente en la ejecucion de la solucion, sino en la
+falta de contralor que los sistemas estatales (y no estatales) tienen.
+El objetivo de esta investigación es entender un sistema y sus piezas móviles, no
+el abuso del mismo.&lt;/p&gt;
+
+&lt;p&gt;Cabe aclarar que no somos la excepción en la región, tanto la SUBE de Argentina,
+como la BIP! de Chile son vulnerables al mismo ataque.
+La unica curiosidad que tengo es que nuestro sistema fue implementado &lt;em&gt;luego&lt;/em&gt; de
+que este modelo de tarjeta se haya mostrado como vulnerable.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Destroying the banking system</title>
