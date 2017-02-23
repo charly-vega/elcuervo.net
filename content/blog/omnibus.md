@@ -24,7 +24,7 @@ de la misma. Véase presentación mas abajo.
 ## Érase una vez...
 
 Desde la invención de [NFC](https://en.wikipedia.org/wiki/Near_field_communication)
-la batalla de que tarjeta es mejor fue fiera.
+la batalla de qué tarjeta es mejor fue fiera.
 
 Hubo una que se hizo extremadamente famosa ya que se implementó en varios lugares
 del mundo especialmente en sistemas de transporte. Ésta fue la [Mifare Classic](https://en.wikipedia.org/wiki/MIFARE) de
@@ -44,7 +44,7 @@ importante: [Seguridad Mifare Classic](http://www.nxp.com/products/identificatio
 
 Bueno, empecemos con lo que nos atañe.
 Esta es una explicación de una vulnerabilidad que tiene tantos años como el
-producto en si.
+producto en sí.
 
 La vulnerabilidad afecta todas y cada una de las tarjetas STM.
 
@@ -66,13 +66,13 @@ NFC es una tecnología que tiene muchos años en el mercado, es ese tipo de magi
 negra que nos llena de ilusión sobre estar viviendo en el futuro: transmisión de
 datos sin contacto.
 La elección del modelo de NXP sucedió hace ya mucho tiempo seguramente atado a
-un bajo precio o quién sabe que.
+un bajo precio o quién sabe qué.
 
-## ... que no era como las demas
+## ... qué no era como las demas
 
 ![](/img/blog/stm.png)
 
-Sabemos varias cosas: es una tecnología que tiene tiempo ahi afuera y que no es
+Sabemos varias cosas: es una tecnología que tiene tiempo ahí afuera y que no es
 particularmente cara.
 
 En cualquier otro escenario esto no sería ningún problema, el problema es (como con
@@ -105,14 +105,14 @@ Asi nació [CRAPTO1](http://crapto1.netgarage.org/).
 Esta es la parte jugosa.
 
 Sabemos como funciona y sabemos como puede llegar a fallar.
-Ahora: que tan fácil es viajar gratis en el sistema de transporte metropolitano?
+Ahora: ¿qué tan fácil es viajar gratis en el sistema de transporte metropolitano?
 
-Que información habrá en su interior?
-Será víctima de un [Replay Attack](https://en.wikipedia.org/wiki/Replay_attack)?
-es decir, se podrá clonar la tarjeta y/o restaurarla a un estado anterior
-terminando asi con (a efectos prácticos) saldo ilimitado?
+¿Qué información habrá en su interior?
+¿Será víctima de un [Replay Attack](https://en.wikipedia.org/wiki/Replay_attack)?
+es decir, ¿se podrá clonar la tarjeta y/o restaurarla a un estado anterior
+terminando así con (a efectos prácticos) saldo ilimitado?
 
-Mi investigación llevo un tiempo, desde la comprensión del problema hasta el acceso
+Mi investigación llevó un tiempo, desde la comprensión del problema hasta el acceso
 al hardware necesario.
 
 Al dia de hoy el costo es de $40 dólares de Trump ^_^.
@@ -150,15 +150,15 @@ Bueno, no esa... puse en cero algunos valores para hacerlo mas interesante :P.
 
 Habiendo conseguido esa clave pude inferir el resto de las claves de la tarjeta.
 
-Pero cual es la gracia si solo se puede hacer en una tarjeta? Hay una cantidad
+¿Pero cual es la gracia si solo se puede hacer en una tarjeta? Hay una cantidad
 gigante de claves ahi afuera, todos sabemos que repetir este proceso por cada
-una de ellas es ridiculamente trabajoso... a menos que...
+una de ellas es ridículamente trabajoso... a menos que...
 
-Intetando reproducir el experimento en otra tarjeta me canse de esperar el ataque
-de fuerza bruta y probé las 32 claves que ya tenia de la tarjeta original con
-otra que consegui.
+Intentando reproducir el experimento en otra tarjeta me cansé de esperar el ataque
+de fuerza bruta y probé las 32 claves que ya tenía de la tarjeta original con
+otra que conseguí.
 
-31 claves denegadas luego noté algo interesante... la primer clave de lectura
+31 claves denegadas luego noté algo interesante... la primera clave de lectura
 del primer sector de todas las tarjetas es la misma.
 Usando esta clave "maestra" todo el resto de claves pueden ser inferidas.
 
@@ -169,7 +169,7 @@ es de menos de 10 segundos.
 
 ## Un vestigio de luz.
 
-Ahora ilumenemos todo el cuarto y veamos como funciona la STM.
+Ahora ilumenemos todo el cuarto y veamos cómo funciona la STM.
 
 En el momento que un usuario compra su tarjeta de transporte se asocia el UID
 de la tarjeta NFC a la cédula sin puntos ni guiones:
@@ -177,8 +177,8 @@ de la tarjeta NFC a la cédula sin puntos ni guiones:
 `UID: 123123123123 -> CI: 12346789`
 
 En caso de perder la tarjeta y solicitar una nueva se va a repetir el proceso
-pero la cedula (o usuario en este caso) cambia a `12346789_2`, osea, un guion bajo
-más el `n` siguiente.
+pero la cédula (o usuario en este caso) cambia a `12346789_2`, osea, un guión bajo
+mas el `n` siguiente.
 
 Esto trae muchos problmeas, empezando por el anonimato, cada ruta de un portador
 de tarjeta STM puede ser inferida con bastante facilidad pero no solo eso.
@@ -193,7 +193,7 @@ de las claves de los siguientes sectores.
 
 Se usan varias de las recomendaciones de seguridad que les pide Mifare a los que
 usen este modelo viejo que son: contadores (que aumentan y decresen) y los datos
-(por suerte) no estan en texto plano como las fechas y credito. Están guardados
+(por suerte) no estan en texto plano como las fechas y crédito. Están guardados
 usando [XOR](https://en.wikipedia.org/wiki/Exclusive_or).
 
 Ese registro de crédito pasa a la computadora de a bordo, arriba, a la derecha
@@ -201,9 +201,9 @@ entrando en el omnibus. Que tiene un pendrive que guarda los datos de las tarjet
 y sus rutas y es entregado con la recaudación al final de cada jornada.
 
 Es decir, el registro de boletos y su crédito es guardado offline y luego
-(diariamente?) es actualizado en una base central.
+(¿diariamente?) es actualizado en una base central.
 
-Lo que nos da como unica fuente de la verdad la tarjeta STM.
+Lo que nos da como única fuente de la verdad la tarjeta STM.
 Una tarjeta hackeable.
 
 La tarjeta (en su implementación) es vulnerable a lo que se conoce como [Replay Attack](https://en.wikipedia.org/wiki/Replay_attack)
