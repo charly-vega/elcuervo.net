@@ -67,7 +67,7 @@ datos sin contacto.
 La elección del modelo de NXP sucedió hace ya mucho tiempo seguramente atado a
 un bajo precio o quién sabe qué.
 
-## ... que no era como las demás
+## ... qué no era como las demás
 
 ![](/img/blog/stm.png)
 
